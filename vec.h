@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// does what you expect vectors to be able to do.
 class vec {
 public:
     double x, y, z;

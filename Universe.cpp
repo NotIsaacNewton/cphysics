@@ -5,7 +5,7 @@
 #include <thread>
 
 Universe::Universe(const string& method, vec magnetic, vec electric, vec gravity, double time_step,
-                   const vector<string>& active_forces) {
+                   const vector<string> &active_forces) {
     // solver to use
     solver = method;
     // physical values of environment
@@ -23,11 +23,11 @@ Universe::Universe(const string& method, vec magnetic, vec electric, vec gravity
     stop = false;
 }
 
-void Universe::add_object(Object o) {
+void Universe::addObject(Object o) {
     objects.push_back(o);
 }
 
-void Universe::add_physics_object(Object o) {
+void Universe::addPhysicsObject(Object o) {
     physics.push_back(o);
 }
 
@@ -129,6 +129,8 @@ void Universe::verlet() {
     }
 }
 
+[[maybe_unused]] void Universe::rk4() {}
+
 void Universe::update() {
     if (solver == "none") {
         stop = true;
@@ -143,7 +145,7 @@ void Universe::update() {
 void Universe::end() {
     string input;
     cout << "\n" << "Press return to stop simulation." << "\n";
-    input = cin.get();
+    input = std::to_string(cin.get());
     if (input == "\n") {
         stop = true;
     }
@@ -163,7 +165,7 @@ void Universe::start(double time) {
 
 void Universe::simulate(double time) {
     thread ender([this](){end();});
-    thread starter([this, time]() {start(time);});
+    thread starter([this, time](){start(time);});
     ender.join();
     starter.join();
 }

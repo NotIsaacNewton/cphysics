@@ -1,11 +1,11 @@
 #include "Universe.h"
 #include "Object.h"
+#include "Simulation.h"
+#include "Sphere.h"
 
-using namespace std;
 
 int main() {
-    Universe universe{"verlet"};
-    Object object{universe};
-    universe.simulate();
+    Sphere planet{};
+    Simulation::simulate();
     return 0;
 }

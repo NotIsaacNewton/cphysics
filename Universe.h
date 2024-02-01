@@ -15,6 +15,8 @@ class Object;
 
 using namespace std;
 
+// universes control the actual meat of the simulation.
+// they hold the different solvers, field strengths, and functions to move forward time.
 class Universe {
 public:
     string solver;
@@ -35,10 +37,10 @@ public:
                       const vector<string>& active_forces={"electric", "magnetic", "gravity"});
 
     // adds objects to universal objects list
-    void add_object(Object o);
+    void addObject(Object o);
 
     // adds physics objects to universal physics objects list
-    void add_physics_object(Object o);
+    void addPhysicsObject(Object o);
 
     // calculates gravitational force
     void gravitational();
@@ -58,6 +60,9 @@ public:
     // verlet solver
     void verlet();
 
+    //rk4 solver
+    void rk4();
+
     // updates the universe by one step "dt" in time
     void update();
 
@@ -70,4 +75,5 @@ public:
     // threads end and start functions together
     void simulate(double time=0);
 };
+
 #endif //PHYSICS_UNIVERSE_H
